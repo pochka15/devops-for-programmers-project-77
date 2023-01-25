@@ -1,8 +1,0 @@
-# Terraform variables
-
-yandex_token: "{{ vault_yandex_token }}"
-
-# Ansible variables
-
-terraform_dir: "{{ playbook_dir }}/../terraform"
-yandex_token_dest: "{{ playbook_dir }}/group_vars/vault.yml"

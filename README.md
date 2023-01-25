@@ -10,4 +10,5 @@ This is a final Hexlet DevOps project
 - Generate ssh keys for the Yandex Cloud `make generate-ssh-keys`
 - Create vault password: `make vault-create-password password=my_password`
 - Setup yandex token: `make generate-yandex-token vault-encrypt`
-- Set variables in [all.yml](./ansible/group_vars/all.yml). If you need to edit vault variables use `make vault-edit`
+- Set variables in [all.yml](./ansible/group_vars/all.yml). To edit vault variables: `make vault-edit`
+- Setup terraform infrastructure: `make terraform-setup`

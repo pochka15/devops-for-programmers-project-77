@@ -1,0 +1,14 @@
+# Terraform variables
+
+yandex_token: "{{ vault_yandex_token }}"
+yandex_cloud_id: "{{ vault_yandex_cloud_id }}"
+yandex_folder_id: "{{ vault_yandex_folder_id }}"
+public_ssh_key_path: "~/.ssh/yandex/id_rsa.pub"
+pg_user: "postgres"
+pg_password: "{{ vault_pg_password }}"
+
+# Ansible variables
+
+terraform_dir: "{{ playbook_dir }}/../terraform"
+yandex_token_dest: "{{ playbook_dir }}/group_vars/vault.yml"
+private_ssh_key_path: ~/.ssh/yandex/id_rsa

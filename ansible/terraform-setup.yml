@@ -1,0 +1,16 @@
+---
+- hosts: localhost
+  connection: local
+  
+  tasks:
+    - name: Apply terraform infrastructure
+      community.general.terraform:
+        project_path: "{{ terraform_dir }}"
+        force_init: yes
+        variables:
+          yandex_token: "{{ yandex_token }}"
+          yandex_cloud_id: "{{ yandex_cloud_id }}"
+          yandex_folder_id: "{{ yandex_folder_id }}"
+          public_ssh_key_path: "{{ public_ssh_key_path }}"
+          pg_user: "{{ pg_user }}"
+          pg_password: "{{ pg_password }}"
