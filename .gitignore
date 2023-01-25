@@ -1,0 +1,9 @@
+playground/**
+
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+*.auto.tfvars
+*.backup
+
+.DS_Store
