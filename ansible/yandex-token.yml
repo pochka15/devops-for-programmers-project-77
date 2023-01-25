@@ -1,0 +1,18 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: false
+
+  tasks:
+    - name: Generate yandex token
+      ansible.builtin.command:
+        cmd: yc iam create-token
+      register:
+        yandex_token_result
+
+    - name: Copy yandex token into a file
+      template:
+        src: templates/yandex_token.j2
+        dest: "{{ yandex_token_dest }}"
+      vars:
+        yandex_token: "{{ yandex_token_result.stdout }}"
