@@ -1,6 +1,5 @@
 # Terraform variables
 
-yandex_token: "{{ vault_yandex_token }}"
 yandex_cloud_id: "{{ vault_yandex_cloud_id }}"
 yandex_folder_id: "{{ vault_yandex_folder_id }}"
 public_ssh_key_path: "~/.ssh/yandex/id_rsa.pub"

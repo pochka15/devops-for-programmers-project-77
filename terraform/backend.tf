@@ -4,10 +4,10 @@ resource "yandex_mdb_postgresql_cluster" "main-pg-cluster" {
   network_id  = yandex_vpc_network.main-network.id
 
   config {
-    version = 15
+    version = 14
 
     resources {
-      resource_preset_id = "s2.micro"
+      resource_preset_id = "b1.nano"
       disk_type_id       = "network-hdd"
       disk_size          = 10
     }
@@ -29,7 +29,7 @@ resource "yandex_mdb_postgresql_cluster" "main-pg-cluster" {
 resource "yandex_mdb_postgresql_database" "main-pg-db" {
   cluster_id = yandex_mdb_postgresql_cluster.main-pg-cluster.id
   name       = "main-pg-db"
-  owner      = "hexlet-user"
+  owner      = yandex_mdb_postgresql_user.hexlet-user.name
   depends_on = [
     yandex_mdb_postgresql_user.hexlet-user
   ]

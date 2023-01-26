@@ -13,6 +13,6 @@
     - name: Copy yandex token into a file
       template:
         src: templates/yandex_token.j2
-        dest: "{{ yandex_token_dest }}"
+        dest: "{{ terraform_dir }}/secrets.auto.tfvars"
       vars:
         yandex_token: "{{ yandex_token_result.stdout }}"

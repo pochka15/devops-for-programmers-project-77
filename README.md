@@ -7,8 +7,11 @@ This is a final Hexlet DevOps project
 ## Setup
 
 - Create an account in the Yandex Cloud and install Yandex CLI
-- Generate ssh keys for the Yandex Cloud `make generate-ssh-keys`
-- Create vault password: `make vault-create-password password=my_password`
-- Setup yandex token: `make generate-yandex-token vault-encrypt`
-- Set variables in [all.yml](./ansible/group_vars/all.yml). To edit vault variables: `make vault-edit`
+- Generate ssh keys for the Yandex Cloud: `make generate-ssh-keys`
+- Generate yandex token: `make generate-yandex-token`
+  - Note: generated token is stored in `terraform/secrets.auto.tfvars`. This file is added to the gitignore. This is the only terraform variable which is set in the `tfvars` file. Other variables are passed via ansible.
+- Create ansible vault password: `make vault-create-password password=my_password`
+  - Note: it's saved in the `playground/vault-password.txt`. This file is added to the gitignore
+- Set variables in [all.yml](./ansible/group_vars/all/all.yml) and in the [vault.yml](./ansible/group_vars/all/vault.yml)
+  - Note: to encrypt vault: `make vault-encrypt`
 - Setup terraform infrastructure: `make terraform-setup`
