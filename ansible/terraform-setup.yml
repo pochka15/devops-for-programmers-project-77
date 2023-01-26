@@ -10,6 +10,7 @@
         variables:
           yandex_cloud_id: "{{ yandex_cloud_id }}"
           yandex_folder_id: "{{ yandex_folder_id }}"
+          yandex_user: "{{ yandex_user }}"
           public_ssh_key_path: "{{ public_ssh_key_path }}"
           pg_user: "{{ pg_user }}"
           pg_password: "{{ pg_password }}"

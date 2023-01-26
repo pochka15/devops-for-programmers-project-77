@@ -1,13 +1,16 @@
-# Terraform variables
+# Don't change ssh_user! Because Yandex Cloud user depends on it
+# And Yandex Cloud can create only ubuntu user via terraform
+ssh_user: "ubuntu"
+
+public_ssh_key_path: "~/.ssh/yandex/id_rsa.pub"
+private_ssh_key_path: ~/.ssh/yandex/id_rsa
 
 yandex_cloud_id: "{{ vault_yandex_cloud_id }}"
 yandex_folder_id: "{{ vault_yandex_folder_id }}"
-public_ssh_key_path: "~/.ssh/yandex/id_rsa.pub"
-pg_user: "postgres"
+yandex_token_dest: "{{ playbook_dir }}/group_vars/vault.yml"
+yandex_user: "{{ ssh_user }}"
+
+pg_user: "hexlet-pg-user"
 pg_password: "{{ vault_pg_password }}"
 
-# Ansible variables
-
 terraform_dir: "{{ playbook_dir }}/../terraform"
-yandex_token_dest: "{{ playbook_dir }}/group_vars/vault.yml"
-private_ssh_key_path: ~/.ssh/yandex/id_rsa

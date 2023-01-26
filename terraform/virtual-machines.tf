@@ -25,7 +25,7 @@ resource "yandex_compute_instance" "web1" {
   }
 
   metadata = {
-    ssh-keys = "ubuntu:${file(var.public_ssh_key_path)}"
+    ssh-keys = "${var.yandex_user}:${file(var.public_ssh_key_path)}"
   }
 }
 
@@ -56,6 +56,6 @@ resource "yandex_compute_instance" "web2" {
   }
 
   metadata = {
-    ssh-keys = "ubuntu:${file(var.public_ssh_key_path)}"
+    ssh-keys = "${var.yandex_user}:${file(var.public_ssh_key_path)}"
   }
 }

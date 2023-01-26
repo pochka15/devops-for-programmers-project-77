@@ -2,7 +2,7 @@
 Host {{it.name}}
     Hostname {{it.network_interface.0.nat_ip_address}}
     IdentityFile {{private_ssh_key_path}}
-    User ubuntu
+    User {{ssh_user}}
 
 {% endfor %}
 
