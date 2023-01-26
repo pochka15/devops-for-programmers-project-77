@@ -18,3 +18,6 @@ vault-view:
 
 terraform-setup:
 	ansible-playbook --vault-password-file playground/vault-password.txt ansible/terraform-setup.yml
+
+ssh-web1:
+	ssh -F ssh_config web1

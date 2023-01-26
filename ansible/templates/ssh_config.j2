@@ -1,0 +1,8 @@
+{% for it in infra.outputs.webservers.value %}
+Host {{it.name}}
+    Hostname {{it.network_interface.0.nat_ip_address}}
+    IdentityFile {{private_ssh_key_path}}
+    User ubuntu
+
+{% endfor %}
+
