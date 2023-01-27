@@ -4,6 +4,8 @@ ssh_user: "ubuntu"
 
 public_ssh_key_path: "~/.ssh/yandex/id_rsa.pub"
 private_ssh_key_path: ~/.ssh/yandex/id_rsa
+redmine_env_file_path: "/tmp/redmine.env"
+terraform_dir: "{{ playbook_dir }}/../terraform"
 
 yandex_cloud_id: "{{ vault_yandex_cloud_id }}"
 yandex_folder_id: "{{ vault_yandex_folder_id }}"
@@ -13,4 +15,6 @@ yandex_user: "{{ ssh_user }}"
 pg_user: "hexlet-pg-user"
 pg_password: "{{ vault_pg_password }}"
 
-terraform_dir: "{{ playbook_dir }}/../terraform"
+pip_install_packages:
+  - name: docker
+    state: latest

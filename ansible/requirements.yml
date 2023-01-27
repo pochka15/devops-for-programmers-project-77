@@ -1,0 +1,9 @@
+---
+collections:
+  - name: community.docker  
+    version: 3.3.2
+
+roles:
+  - name: geerlingguy.pip
+    version: 2.2.0
+  

@@ -1,0 +1,5 @@
+vault_redmine_db_postgres: containers-us-west-91.railway.app
+vault_redmine_db_database: railway
+vault_redmine_db_username: postgres
+vault_redmine_db_password: password
+vault_redmine_db_port: "6432"
