@@ -1,5 +1,5 @@
 Host web1
-    Hostname 158.160.57.170
+    Hostname 62.84.119.202
     IdentityFile ~/.ssh/yandex/id_rsa
     User ubuntu
 

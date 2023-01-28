@@ -5,13 +5,14 @@ resource "yandex_compute_instance" "web1" {
 
   resources {
     cores         = 2
-    memory        = 4
+    memory        = 8
     core_fraction = 20
   }
 
   boot_disk {
     initialize_params {
       image_id = "fd8ueg1g3ifoelgdaqhb" # Ubuntu 22.04 LTS
+      size     = 15
     }
   }
 
@@ -36,13 +37,14 @@ resource "yandex_compute_instance" "web2" {
 
   resources {
     cores         = 2
-    memory        = 4
+    memory        = 8
     core_fraction = 20
   }
 
   boot_disk {
     initialize_params {
       image_id = "fd8ueg1g3ifoelgdaqhb" # Ubuntu 22.04 LTS
+      size     = 15
     }
   }
 
