@@ -17,8 +17,9 @@ resource "yandex_lb_network_load_balancer" "main-load-balancer" {
   name = "main-load-balancer"
 
   listener {
-    name = "main-listener"
-    port = 443
+    name        = "main-listener"
+    port        = 80
+    target_port = 80
     external_address_spec {
       ip_version = "ipv4"
     }
