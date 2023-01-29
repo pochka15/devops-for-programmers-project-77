@@ -1,8 +1,28 @@
 # Variables that need to be setup manually
 redmine_db_postgres: "{{ vault_pg_host }}"
+datadog_api_key: "{{ vault_datadog_api_key }}"
 
 # Variables from "all" group
 redmine_db_database: "{{ pg_database }}"
 redmine_db_username: "{{ pg_user }}"
 redmine_db_password: "{{ pg_password }}"
 redmine_db_port: "{{ pg_port }}"
+
+# Default variables
+
+datadog_site: "datadoghq.eu"
+datadog_agent_version: "7.41.1"
+
+datadog_config:
+  logs_enabled: true
+
+datadog_checks:
+  http_check:
+    init_config:
+
+    instances:
+      - name: Localhost
+        url: http://localhost
+
+network_config:
+  enabled: true

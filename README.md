@@ -7,6 +7,7 @@ This is a final Hexlet DevOps project
 ## Setup
 
 - Create an account in the Yandex Cloud and install Yandex CLI
+- Create an account in the Datadog
 - Generate ssh keys for the Yandex Cloud: `make generate-ssh-keys`
 - Generate yandex token: `make generate-yandex-token`
   - Note: generated token is stored in `terraform/secrets.auto.tfvars`. This file is added to the gitignore. This is the only terraform variable which is set in the `tfvars` file. Other variables are passed via ansible.
