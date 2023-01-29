@@ -1,5 +1,8 @@
-redmine_db_postgres: "{{ vault_redmine_db_postgres }}"
-redmine_db_database: "{{ vault_redmine_db_database }}"
-redmine_db_username: "{{ vault_redmine_db_username }}"
-redmine_db_password: "{{ vault_redmine_db_password }}"
-redmine_db_port: "{{ vault_redmine_db_port }}"
+# Variables that need to be setup manually
+redmine_db_postgres: "{{ vault_pg_host }}"
+
+# Variables from "all" group
+redmine_db_database: "{{ pg_database }}"
+redmine_db_username: "{{ pg_user }}"
+redmine_db_password: "{{ pg_password }}"
+redmine_db_port: "{{ pg_port }}"

@@ -1,14 +1,14 @@
-resource "yandex_mdb_postgresql_cluster" "main-pg-cluster" {
-  name        = "main-pg-cluster"
+resource "yandex_mdb_postgresql_cluster" "hexlet-cluster" {
+  name        = "hexlet-cluster"
   environment = "PRESTABLE"
   network_id  = yandex_vpc_network.main-network.id
 
   config {
-    version = 14
+    version = 13
 
     resources {
-      resource_preset_id = "b1.nano"
-      disk_type_id       = "network-hdd"
+      resource_preset_id = "s2.micro"
+      disk_type_id       = "network-ssd"
       disk_size          = 10
     }
   }
@@ -26,9 +26,9 @@ resource "yandex_mdb_postgresql_cluster" "main-pg-cluster" {
   }
 }
 
-resource "yandex_mdb_postgresql_database" "main-pg-db" {
-  cluster_id = yandex_mdb_postgresql_cluster.main-pg-cluster.id
-  name       = "main-pg-db"
+resource "yandex_mdb_postgresql_database" "hexlet-db" {
+  cluster_id = yandex_mdb_postgresql_cluster.hexlet-cluster.id
+  name       = var.pg_database
   owner      = yandex_mdb_postgresql_user.hexlet-user.name
   depends_on = [
     yandex_mdb_postgresql_user.hexlet-user
@@ -36,7 +36,7 @@ resource "yandex_mdb_postgresql_database" "main-pg-db" {
 }
 
 resource "yandex_mdb_postgresql_user" "hexlet-user" {
-  cluster_id = yandex_mdb_postgresql_cluster.main-pg-cluster.id
+  cluster_id = yandex_mdb_postgresql_cluster.hexlet-cluster.id
   name       = var.pg_user
   password   = var.pg_password
 }

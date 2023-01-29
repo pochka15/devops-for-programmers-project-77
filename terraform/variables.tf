@@ -22,3 +22,7 @@ variable "pg_password" {
   type    = string
 }
 
+variable "pg_database" {
+  default = "database"
+  type    = string
+}

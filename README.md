@@ -13,9 +13,12 @@ This is a final Hexlet DevOps project
 - Create ansible vault password: `make vault-create-password password=my_password`
   - Note: it's saved in the `playground/vault-password.txt`. This file is added to the gitignore
 - Set variables in [all.yml](./ansible/group_vars/all/all.yml) and in the [vault.yml](./ansible/group_vars/all/vault.yml)
-  - Note: to encrypt vault: `make vault-encrypt`
+  - Note: to encrypt vault: `make vault-encrypt group=all`
 - Setup terraform infrastructure: `make terraform-setup`
+- Set webservers variables [all.yml](./ansible/group_vars/webservers/all.yml) and in the [vault.yml](./ansible/group_vars/webservers/vault.yml)
+  - Note: to encrypt vault: `make vault-encrypt group=webservers`
 - Setup webservers: `make setup`
+- Release application: `make release`
 
 ## SSH
 
