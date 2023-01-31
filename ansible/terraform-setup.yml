@@ -15,6 +15,7 @@
           pg_database: "{{ pg_database }}"
           pg_user: "{{ pg_user }}"
           pg_password: "{{ pg_password }}"
+          release_domain: "{{ release_domain }}"
       register: infra
 
     - name: Generate hosts

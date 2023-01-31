@@ -26,3 +26,7 @@ variable "pg_database" {
   default = "database"
   type    = string
 }
+
+variable "release_domain" {
+  type = string
+}

@@ -22,8 +22,19 @@ This is a final Hexlet DevOps project
 
 ## Deployed application
 
-Application is currently deployed at [http://pochka15.click](http://pochka15.click)
+Application is currently deployed at [https://pochka15.click](https://pochka15.click)
 
 ## SSH
 
 - To connect to the virtual machine "web1": `make ssh host=web2`
+
+## Enable HTTPS
+
+When creating terraform infrastructure it's automatically created a certificate for the domain you specified. See the [domain.tf](./terraform/domain.tf) for details. But in order to enable HTTPS you have to wait until certificate status becomes "ISSUED". When it's issued, sadly you have to go through the next steps manually:
+
+1. Destroy `yandex_dns_recordset.balancer-record` resource from the [domain.tf](./terraform/domain.tf)
+2. Destroy `yandex_alb_load_balancer.hexlet-balancer` resource from the [balancer.tf](./terraform/balancer.tf)
+3. Create a new balancer but this time uncomment `HTTPS listener block` and comment `HTTP listener block` in the [balancer.tf](./terraform/balancer.tf)
+4. Create `yandex_dns_recordset.balancer-record` resource from the [domain.tf](./terraform/domain.tf)
+
+What this does is it destroys and creates balancer that listens on port 443 instead of port 80. For now I couldn't find a better way to automate it
