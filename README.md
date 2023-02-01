@@ -56,3 +56,7 @@ When creating terraform infrastructure it's automatically created a certificate 
    2. `yandex_dns_recordset.balancer-record` from the [domain.tf](./terraform/domain.tf)
 
 What this does is it destroys and creates balancer that listens on port 443 instead of port 80. For now I couldn't find a better way to automate it. Because when I try to change listener without destroying it I get this error: "Either external ipv4 address or internal ipv4 address or external ipv6 address should be specified for the HTTP route".
+
+## Demo
+
+[![Hexlet project demo](https://github.com/pochka15/devops-for-programmers-project-77/blob/main/images/HEXLET%20(Demo).png)](https://drive.google.com/file/d/1lXwXmHjtvNAbdcdo1cmZy9FAI2fS2Jl3/view?usp=sharing "Hexlet project demo")
