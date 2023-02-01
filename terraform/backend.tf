@@ -1,12 +1,3 @@
-terraform {
-  required_providers {
-    yandex = {
-      source  = "yandex-cloud/yandex"
-      version = "~> 0.84.0"
-    }
-  }
-}
-
 resource "yandex_alb_load_balancer" "hexlet-balancer" {
   name = "hexlet-balancer"
 
@@ -205,12 +196,7 @@ output "webservers" {
 output "pg_host" {
   value = one(yandex_mdb_postgresql_cluster.hexlet-cluster.host).fqdn
 }
-provider "yandex" {
-  token     = var.yandex_token
-  cloud_id  = var.yandex_cloud_id
-  folder_id = var.yandex_folder_id
-  zone      = "ru-central1-a"
-}
+
 variable "yandex_token" {}
 variable "yandex_cloud_id" {}
 variable "yandex_folder_id" {}
