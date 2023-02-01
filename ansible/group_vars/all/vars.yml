@@ -21,7 +21,7 @@ terraform_dir: "{{ playbook_dir }}/../terraform"
 redmine_env_file_path: "/tmp/redmine.env"
 yandex_user: "{{ ssh_user }}"
 
-pg_database: "hexlet-databse"
+pg_database: "hexlet-database"
 pg_user: "hexlet-user"
 pg_port: 6432
 

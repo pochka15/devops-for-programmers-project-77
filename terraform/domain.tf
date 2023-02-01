@@ -2,7 +2,7 @@ resource "yandex_dns_zone" "hexlet-dns-zone" {
   name             = "hexlet-dns-zone"
   zone             = "${var.release_domain}." # e.x. "example.com."
   public           = true
-  private_networks = [yandex_vpc_network.main-network.id]
+  private_networks = [yandex_vpc_network.hexlet-network.id]
 }
 
 resource "yandex_dns_recordset" "balancer-record" {

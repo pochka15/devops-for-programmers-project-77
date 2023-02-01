@@ -1,7 +1,7 @@
 resource "yandex_mdb_postgresql_cluster" "hexlet-cluster" {
   name        = "hexlet-cluster"
   environment = "PRESTABLE"
-  network_id  = yandex_vpc_network.main-network.id
+  network_id  = yandex_vpc_network.hexlet-network.id
 
   config {
     version = 13
@@ -21,7 +21,7 @@ resource "yandex_mdb_postgresql_cluster" "hexlet-cluster" {
 
   host {
     zone      = "ru-central1-a"
-    subnet_id = yandex_vpc_subnet.main-subnet.id
+    subnet_id = yandex_vpc_subnet.hexlet-subnet-a.id
     name      = "main-postgres-host"
   }
 }

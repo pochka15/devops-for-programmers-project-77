@@ -1,12 +1,12 @@
 resource "yandex_alb_load_balancer" "hexlet-balancer" {
   name = "hexlet-balancer"
 
-  network_id = yandex_vpc_network.main-network.id
+  network_id = yandex_vpc_network.hexlet-network.id
 
   allocation_policy {
     location {
       zone_id   = "ru-central1-a"
-      subnet_id = yandex_vpc_subnet.main-subnet.id
+      subnet_id = yandex_vpc_subnet.hexlet-subnet-a.id
     }
   }
 
@@ -60,12 +60,12 @@ resource "yandex_alb_target_group" "hexlet-target-group" {
   name = "hexlet-target-group"
 
   target {
-    subnet_id  = yandex_vpc_subnet.main-subnet.id
+    subnet_id  = yandex_vpc_subnet.hexlet-subnet-a.id
     ip_address = yandex_compute_instance.web1.network_interface.0.ip_address
   }
 
   target {
-    subnet_id  = yandex_vpc_subnet.main-subnet.id
+    subnet_id  = yandex_vpc_subnet.hexlet-subnet-a.id
     ip_address = yandex_compute_instance.web2.network_interface.0.ip_address
   }
 }

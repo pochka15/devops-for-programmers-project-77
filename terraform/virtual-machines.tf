@@ -21,7 +21,7 @@ resource "yandex_compute_instance" "web1" {
   }
 
   network_interface {
-    subnet_id = yandex_vpc_subnet.main-subnet.id
+    subnet_id = yandex_vpc_subnet.hexlet-subnet-a.id
     nat       = true
   }
 
@@ -53,7 +53,7 @@ resource "yandex_compute_instance" "web2" {
   }
 
   network_interface {
-    subnet_id = yandex_vpc_subnet.main-subnet.id
+    subnet_id = yandex_vpc_subnet.hexlet-subnet-a.id
     nat       = true
   }
 
