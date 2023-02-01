@@ -6,29 +6,32 @@ This is a final Hexlet DevOps project
 
 ## Release tutorial
 
-### Step 1. Create accounts and generate necessary keys and passwords
+### Step 1. Setup Yandex Cloud
 
 1. Create an account in the Yandex Cloud and install Yandex CLI
-2. Generate ssh keys for the Yandex Cloud: `make generate-ssh-keys`
-3. Generate yandex token: `make generate-yandex-token`
+2. Generate yandex token: `make generate-yandex-token`
     1. Note: generated token is saved in the `terraform/secrets.auto.tfvars`. This file is added to the gitignore. This is the only terraform variable which is set in the `tfvars` file. Other variables are passed via ansible.
-4. Create ansible vault password: `make vault-create-password password=my_password`
+
+### Step 2. Create necessary keys and passwords
+
+1. Generate ssh keys for the Yandex Cloud: `make generate-ssh-keys`
+2. Create ansible vault password: `make vault-create-password password=my_password`
     1. Note: password is saved in the `playground/vault-password.txt`. This file is added to the gitignore
 
-### Step 2. Create terraform infrastructure
+### Step 3. Create terraform infrastructure
 
 1. Set variables in the [all.yml](./ansible/group_vars/all/all.yml) and in the [vault.yml](./ansible/group_vars/all/vault.yml)
     1. Note: to encrypt vault: `make vault-encrypt group=all`
 2. Setup terraform infrastructure: `make terraform-setup`
 
-### Step 3. Setup webservers
+### Step 4. Setup webservers
 
 1. Set webservers variables in the [all.yml](./ansible/group_vars/webservers/all.yml) and in the [vault.yml](./ansible/group_vars/webservers/vault.yml)
     1. Note: to encrypt webservers vault: `make vault-encrypt group=webservers`
     2. Also: to get terraform output: `make -s terraform-show-output name=pg_host` ("name" parameter is optional)
 2. `make setup`
 
-### Step 3. Release application
+### Step 5. Release application
 
 1. `make release`
 
