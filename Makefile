@@ -19,6 +19,9 @@ vault-view:
 terraform-setup:
 	ansible-playbook --vault-password-file playground/vault-password.txt ansible/terraform-setup.yml
 
+terraform-show-output:
+	cd terraform; terraform output $(name); cd - > /dev/null
+
 setup_required_packages:
 	ansible-playbook -i ansible/inventory.ini --vault-password-file playground/vault-password.txt --tags required --ssh-extra-args "-F ssh_config" ansible/playbook.yml
 

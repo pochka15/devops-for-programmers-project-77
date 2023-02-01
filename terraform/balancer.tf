@@ -31,7 +31,7 @@ resource "yandex_alb_load_balancer" "hexlet-balancer" {
   }
 
   # HTTPS listener
-  # Note: it works only when yandex_cm_certificate.pochka15-certificate.status == "ISSUED"
+  # Note: it works only when yandex_cm_certificate.main-domain-certficate.status == "ISSUED"
   # listener {
   #   name = "https-listener"
 
@@ -50,7 +50,7 @@ resource "yandex_alb_load_balancer" "hexlet-balancer" {
   #         http_router_id = yandex_alb_http_router.hexlet-router.id
   #       }
 
-  #       certificate_ids = [yandex_cm_certificate.pochka15-certificate.id]
+  #       certificate_ids = [yandex_cm_certificate.main-domain-certficate.id]
   #     }
   #   }
   # }
