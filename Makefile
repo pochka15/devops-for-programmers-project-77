@@ -40,7 +40,7 @@ setup_docker:
 	ansible-playbook -i ansible/inventory.ini \
 	--vault-password-file playground/vault-password.txt \
 	--tags docker \
-	--ssh-extra-args "-F ssh_config"
+	--ssh-extra-args "-F ssh_config" \
 	ansible/playbook.yml
 
 setup: setup_required_packages setup_docker
@@ -48,7 +48,7 @@ setup: setup_required_packages setup_docker
 release:
 	ansible-playbook -i ansible/inventory.ini \
 	--vault-password-file playground/vault-password.txt \
-	--ssh-extra-args "-F ssh_config"
+	--ssh-extra-args "-F ssh_config" \
 	ansible/release.yml
 	
 ssh:
