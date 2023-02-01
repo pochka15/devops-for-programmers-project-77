@@ -46,7 +46,7 @@ To enable HTTPS see the "Enable HTTPS" section
 
 ## Enable HTTPS
 
-When creating terraform infrastructure it's automatically created a certificate for the domain you specified. See the [domain.tf](./terraform/domain.tf) for details. But in order to enable HTTPS you have to wait until certificate status becomes "ISSUED". When it's issued, you have to go through the next steps manually 😕:
+When creating terraform infrastructure it's automatically created a certificate for the domain you specified. See the [domain.tf](./terraform/domain.tf) for details. But in order to enable HTTPS you have to wait until certificate status becomes "ISSUED". When it's issued, you have two options. First is to go and change balancer listener manually in the Yandex Cloud console. But this can lead to incorrect terraform state synchronization. Second is to go through the next steps manually 😕:
 
 1. Destroy these resources (Note: you can just comment the resource blocks and apply terraform)
    1. `yandex_alb_load_balancer.hexlet-balancer` from the [balancer.tf](./terraform/balancer.tf)
