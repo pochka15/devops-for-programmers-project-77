@@ -18,13 +18,8 @@ private_ssh_key_path: ~/.ssh/yandex/id_rsa
 # Default variables
 
 terraform_dir: "{{ playbook_dir }}/../terraform"
-redmine_env_file_path: "/tmp/redmine.env"
 yandex_user: "{{ ssh_user }}"
 
 pg_database: "hexlet-database"
 pg_user: "hexlet-user"
 pg_port: 6432
-
-pip_install_packages:
-  - name: docker
-    state: latest

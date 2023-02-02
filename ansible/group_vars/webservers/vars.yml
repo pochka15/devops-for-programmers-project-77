@@ -6,3 +6,11 @@ redmine_db_database: "{{ pg_database }}"
 redmine_db_username: "{{ pg_user }}"
 redmine_db_password: "{{ pg_password }}"
 redmine_db_port: "{{ pg_port }}"
+
+# Default variables
+
+redmine_env_file_path: "/tmp/redmine.env"
+
+pip_install_packages:
+  - name: docker
+    state: latest
