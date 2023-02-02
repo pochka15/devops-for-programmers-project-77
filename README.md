@@ -20,13 +20,13 @@ This is a final Hexlet DevOps project
 
 ### Step 3. Create terraform infrastructure
 
-1. Set variables in the [all.yml](./ansible/group_vars/all/all.yml) and in the [vault.yml](./ansible/group_vars/all/vault.yml)
+1. Set variables in the [vars.yml](./ansible/group_vars/all/vars.yml) and in the [vault.yml](./ansible/group_vars/all/vault.yml)
     1. Note: to encrypt vault: `make vault-encrypt group=all`
 2. Setup terraform infrastructure: `make terraform-setup`
 
 ### Step 4. Setup webservers
 
-1. Set webservers variables in the [all.yml](./ansible/group_vars/webservers/all.yml) and in the [vault.yml](./ansible/group_vars/webservers/vault.yml)
+1. Set webservers variables in the [vars.yml](./ansible/group_vars/webservers/vars.yml) and in the [vault.yml](./ansible/group_vars/webservers/vault.yml)
     1. Note: to encrypt webservers vault: `make vault-encrypt group=webservers`
     2. Also: to get terraform output: `make -s terraform-show-output name=pg_host` ("name" parameter is optional)
 2. `make setup`
