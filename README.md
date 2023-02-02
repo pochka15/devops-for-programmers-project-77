@@ -4,6 +4,10 @@
 
 This is a final Hexlet DevOps project
 
+## IMPORTANT NOTE
+
+For now deployment website [pochka15.click](https://pochka15.click) doesn't work, status will be changed once it's fixed!
+
 ## Release tutorial
 
 ### Step 1. Setup Yandex Cloud
