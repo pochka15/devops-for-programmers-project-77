@@ -5,35 +5,48 @@
   tasks:
     - name: Apply terraform infrastructure
       community.general.terraform:
-        project_path: "{{ terraform_dir }}"
+        project_path: "{{ terraform.dir }}"
         force_init: yes
+        backend_config:
+          bucket: "{{ terraform.backend.bucket }}"
+          key: "{{ terraform.backend.key }}"
+          access_key: "{{ terraform.backend.access_key }}"
+          secret_key: "{{ terraform.backend.secret_key }}"
         variables:
           yandex_cloud_id: "{{ yandex.cloud_id }}"
           yandex_folder_id: "{{ yandex.folder_id }}"
           yandex_user: "{{ yandex.user }}"
           public_ssh_key_path: "{{ ssh.public_key_path }}"
-          pg_database: "postgres.database }}"
-          pg_user: "postgres.user }}"
-          pg_password: "postgres.password }}"
+          pg_database: "{{ postgres.database }}"
+          pg_user: "{{ postgres.user }}"
+          pg_password: "{{ postgres.password }}"
           release_domain: "{{ release_domain }}"
       register: infra
       tags: setup
+
+    - name: Show terraform apply stdout
+      ansible.builtin.debug:
+        msg: "{{ infra.stdout_lines }}"
+      tags: setup
+      when: ansible_check_mode
 
     - name: Generate hosts
       template:
         src: templates/hosts.j2
         dest: inventory.ini
       tags: setup
+      when: not ansible_check_mode
 
     - name: Generate ssh_config
       template:
         src: templates/ssh_config.j2
         dest: ../ssh_config
       tags: setup
+      when: not ansible_check_mode
 
     - name: Destroy terraform infrastructure
       community.general.terraform:
-        project_path: "{{ terraform_dir }}"
+        project_path: "{{ terraform.dir }}"
         state: absent
         force_init: false
       tags: destroy

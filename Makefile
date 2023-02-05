@@ -25,6 +25,12 @@ vault-view:
 	ansible-vault view ansible/group_vars/$(group)/vault.yml \
 	--vault-password-file playground/vault-password.txt
 
+terraform-plan-setup:
+	ansible-playbook --vault-password-file playground/vault-password.txt \
+	--check \
+	--tags setup \
+	ansible/terraform.yml
+
 terraform-setup:
 	ansible-playbook --vault-password-file playground/vault-password.txt \
 	--tags setup \

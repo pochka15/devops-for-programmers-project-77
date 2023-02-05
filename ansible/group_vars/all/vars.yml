@@ -1,5 +1,5 @@
 ssh:
-  # Don't change ssh_user! Because Yandex Cloud user depends on it
+  # Don't change ssh.user! Because Yandex Cloud user depends on it
   # And Yandex Cloud can create only ubuntu user via terraform
   user: "ubuntu"
   public_key_path: "~/.ssh/yandex/id_rsa.pub"
@@ -8,7 +8,10 @@ ssh:
 yandex:
   cloud_id: "{{ vault.yandex.cloud_id }}" # Set manually
   folder_id: "{{ vault.yandex.folder_id }}" # Set manually
-  user: "{{ ssh_user }}"
+  user: "{{ ssh.user }}"
+  service_account:
+    access_key: "{{ vault.yandex.service_account.access_key }}" # Set manually
+    secret_key: "{{ vault.yandex.service_account.secret_key }}" # Set manually
 
 postgres:
   password: "{{ vault.postgres.password }}" # Set manually
@@ -16,5 +19,12 @@ postgres:
   user: "hexlet-user"
   port: 6432
 
+terraform:
+  dir: "{{ playbook_dir }}/../terraform"
+  backend:
+    bucket: "hexlet-tf-backend" # Set manually
+    key: "hexlet.tfstate" # Set manually
+    access_key: "{{ yandex.service_account.access_key }}"
+    secret_key: "{{ yandex.service_account.secret_key }}"
+  
 release_domain: "pochka15.click" # Set manually
-terraform_dir: "{{ playbook_dir }}/../terraform"

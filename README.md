@@ -6,38 +6,40 @@ This is a final Hexlet DevOps project
 
 ## Release tutorial
 
+Note: See the "Make commands" section. You can find helpful commands there
+
 ### Step 1. Setup Yandex Cloud
 
 1. Create an account in the Yandex Cloud and install Yandex CLI
-2. Generate yandex token: `make generate-yandex-token`
-    1. Note: generated token is saved in the `terraform/secrets.auto.tfvars`. This file is added to the gitignore. This is the only terraform variable which is set in the `tfvars` file. Other variables are passed via ansible.
+2. Create [S3 bucket](https://cloud.yandex.com/en/docs/storage/operations/buckets/create). Terraform state is saved to this bucket.
+3. Create a [service account](https://cloud.yandex.com/en/docs/iam/operations/sa/create) with [the editor](https://cloud.yandex.com/en/docs/iam/concepts/access-control/roles#editor) role. Terraform state is edited by this account.
+4. Generate [static access keys](https://cloud.yandex.com/en/docs/iam/operations/sa/create-access-key) for the service account created in the previous step.
+   1. Note: save the ID key_id and secret key. You will not be able to get the key value again
 
-### Step 2. Create necessary keys and passwords
-
-1. Generate ssh keys for the Yandex Cloud: `make generate-ssh-keys`
-2. Create ansible vault password: `make vault-create-password password=my_password`
-    1. Note: password is saved in the `playground/vault-password.txt`. This file is added to the gitignore
-
-### Step 3. Setup Ansible
+### Step 2. Setup Ansible
 
 1. Install Ansible. Preferrably version >= core 2.14.1
 2. `make install_roles`
 
-### Step 3. Create terraform infrastructure
+### Step 3. Create necessary keys and passwords
 
-1. Set variables in the [vars.yml](./ansible/group_vars/all/vars.yml) and in the [vault.yml](./ansible/group_vars/all/vault.yml)
-    1. Note: to encrypt vault: `make vault-encrypt group=all`
-    2. Note: in these files you can find commented lines with `# Set manually`. These are the variables you most probably need to set
+1. Generate ssh keys for the Yandex Cloud: `make generate-ssh-keys`
+2. Generate yandex token: `make generate-yandex-token`
+    1. Note: generated token is saved in the `terraform/secrets.auto.tfvars`. This file is added to the gitignore. This is the only terraform variable which is set in the `tfvars` file. Other variables are passed via ansible.
+3. Create ansible vault password: `make vault-create-password password=my_password`
+    1. Note: password is saved in the `playground/vault-password.txt`. This file is added to the gitignore
+
+### Step 4. Create terraform infrastructure
+
+1. Set variables in the [vars.yml](./ansible/group_vars/all/vars.yml)
 2. Setup terraform infrastructure: `make terraform-setup`
 
-### Step 4. Setup webservers
+### Step 5. Setup webservers
 
-1. Set webservers variables in the [vars.yml](./ansible/group_vars/webservers/vars.yml) and in the [vault.yml](./ansible/group_vars/webservers/vault.yml)
-    1. Note: to encrypt webservers vault: `make vault-encrypt group=webservers`
-    2. Also: to get terraform output: `make -s terraform-show-output name=pg_host` ("name" parameter is optional)
+1. Set variables in the [vars.yml](./ansible/group_vars/webservers/vars.yml)
 2. `make setup`
 
-### Step 5. Release application
+### Step 6. Release application
 
 1. `make release`
 
@@ -62,6 +64,19 @@ When creating terraform infrastructure it's automatically created a certificate 
    2. `yandex_dns_recordset.balancer-record` from the [domain.tf](./terraform/domain.tf)
 
 What this does is it destroys and creates balancer that listens on port 443 instead of port 80. For now I couldn't find a better way to automate it. Because when I try to change listener without destroying it I get this error: "Either external ipv4 address or internal ipv4 address or external ipv6 address should be specified for the HTTP route".
+
+## Make commands
+
+Ansible
+
+- encrypt variables for the "all" group: `make vault-encrypt group=all`
+- encrypt variables for the "webservers" group: `make vault-encrypt group=webservers`
+
+Terraform
+
+- plan setup: `make terraform-plan-setup`
+- get output: `make -s terraform-show-output name=pg_host`
+- get output for the pg_host value: `make -s terraform-show-output name=pg_host`
 
 ## Demo
 
