@@ -27,7 +27,13 @@ vault-view:
 
 terraform-setup:
 	ansible-playbook --vault-password-file playground/vault-password.txt \
-	ansible/terraform-setup.yml
+	--tags setup \
+	ansible/terraform.yml
+
+terraform-destroy:
+	ansible-playbook --vault-password-file playground/vault-password.txt \
+	--tags destroy \
+	ansible/terraform.yml
 
 terraform-show-output:
 	cd terraform; terraform output $(name); cd - > /dev/null

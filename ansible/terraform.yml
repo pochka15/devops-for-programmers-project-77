@@ -1,7 +1,7 @@
 ---
 - hosts: localhost
   connection: local
-  
+
   tasks:
     - name: Apply terraform infrastructure
       community.general.terraform:
@@ -17,13 +17,23 @@
           pg_password: "{{ pg_password }}"
           release_domain: "{{ release_domain }}"
       register: infra
+      tags: setup
 
     - name: Generate hosts
       template:
         src: templates/hosts.j2
         dest: inventory.ini
+      tags: setup
 
     - name: Generate ssh_config
       template:
         src: templates/ssh_config.j2
         dest: ../ssh_config
+      tags: setup
+
+    - name: Destroy terraform infrastructure
+      community.general.terraform:
+        project_path: "{{ terraform_dir }}"
+        state: absent
+        force_init: false
+      tags: destroy
