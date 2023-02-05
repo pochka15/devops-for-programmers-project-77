@@ -44,6 +44,13 @@
       tags: setup
       when: not ansible_check_mode
 
+    - name: Generate webservers vault
+      template:
+        src: templates/webservers_vault.j2
+        dest: "{{ generated_webservers_vault_dest }}"
+      tags: setup
+      when: not ansible_check_mode
+
     - name: Destroy terraform infrastructure
       community.general.terraform:
         project_path: "{{ terraform.dir }}"
