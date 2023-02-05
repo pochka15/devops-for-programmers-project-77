@@ -5,6 +5,9 @@ generate-yandex-token:
 	ansible-playbook --vault-password-file playground/vault-password.txt \
 	ansible/yandex-token.yml
 
+install_roles:
+	ansible-galaxy install -r requirements.yml
+
 vault-create-password:
 	mkdir -p playground; \
 	touch playground/vault-password.txt; \

@@ -18,6 +18,11 @@ This is a final Hexlet DevOps project
 2. Create ansible vault password: `make vault-create-password password=my_password`
     1. Note: password is saved in the `playground/vault-password.txt`. This file is added to the gitignore
 
+### Step 3. Setup Ansible
+
+1. Install Ansible. Preferrably version >= core 2.14.1
+2. `make install_roles`
+
 ### Step 3. Create terraform infrastructure
 
 1. Set variables in the [vars.yml](./ansible/group_vars/all/vars.yml) and in the [vault.yml](./ansible/group_vars/all/vault.yml)
