@@ -27,6 +27,7 @@ This is a final Hexlet DevOps project
 
 1. Set variables in the [vars.yml](./ansible/group_vars/all/vars.yml) and in the [vault.yml](./ansible/group_vars/all/vault.yml)
     1. Note: to encrypt vault: `make vault-encrypt group=all`
+    2. Note: in these files you can find commented lines with `# Set manually`. These are the variables you most probably need to set
 2. Setup terraform infrastructure: `make terraform-setup`
 
 ### Step 4. Setup webservers

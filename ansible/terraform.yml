@@ -8,13 +8,13 @@
         project_path: "{{ terraform_dir }}"
         force_init: yes
         variables:
-          yandex_cloud_id: "{{ yandex_cloud_id }}"
-          yandex_folder_id: "{{ yandex_folder_id }}"
-          yandex_user: "{{ yandex_user }}"
-          public_ssh_key_path: "{{ public_ssh_key_path }}"
-          pg_database: "{{ pg_database }}"
-          pg_user: "{{ pg_user }}"
-          pg_password: "{{ pg_password }}"
+          yandex_cloud_id: "{{ yandex.cloud_id }}"
+          yandex_folder_id: "{{ yandex.folder_id }}"
+          yandex_user: "{{ yandex.user }}"
+          public_ssh_key_path: "{{ ssh.public_key_path }}"
+          pg_database: "postgres.database }}"
+          pg_user: "postgres.user }}"
+          pg_password: "postgres.password }}"
           release_domain: "{{ release_domain }}"
       register: infra
       tags: setup

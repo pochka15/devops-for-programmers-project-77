@@ -36,7 +36,7 @@ terraform-destroy:
 	ansible/terraform.yml
 
 terraform-show-output:
-	cd terraform; terraform output $(name); cd - > /dev/null
+	cd terraform; terraform output -json $(name); cd - > /dev/null
 
 setup_required_packages:
 	ansible-playbook -i ansible/inventory.ini \
