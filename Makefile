@@ -5,7 +5,7 @@ generate-yandex-token:
 	ansible-playbook --vault-password-file playground/vault-password.txt \
 	ansible/yandex-token.yml
 
-install_roles:
+install-roles:
 	ansible-galaxy install -r requirements.yml
 
 vault-create-password:
@@ -44,21 +44,28 @@ terraform-destroy:
 terraform-show-output:
 	cd terraform; terraform output -json $(name); cd - > /dev/null
 
-setup_required_packages:
+setup-required-packages:
 	ansible-playbook -i ansible/inventory.ini \
 	--vault-password-file playground/vault-password.txt \
 	--tags required \
 	--ssh-extra-args "-F ssh_config" \
 	ansible/playbook.yml
 
-setup_docker:
+setup-docker:
 	ansible-playbook -i ansible/inventory.ini \
 	--vault-password-file playground/vault-password.txt \
 	--tags docker \
 	--ssh-extra-args "-F ssh_config" \
 	ansible/playbook.yml
 
-setup: setup_required_packages setup_docker
+setup-monitoring:
+	ansible-playbook -i ansible/inventory.ini \
+	--vault-password-file playground/vault-password.txt \
+	--tags monitoring \
+	--ssh-extra-args "-F ssh_config" \
+	ansible/playbook.yml
+
+setup: setup_required-packages setup-docker setup-monitoring
 
 release:
 	ansible-playbook -i ansible/inventory.ini \

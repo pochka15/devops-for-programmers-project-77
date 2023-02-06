@@ -14,14 +14,19 @@ Note: See the "Make commands" section. You can find helpful commands there
 2. Create [S3 bucket](https://cloud.yandex.com/en/docs/storage/operations/buckets/create). Terraform state is saved to this bucket.
 3. Create a [service account](https://cloud.yandex.com/en/docs/iam/operations/sa/create) with [the editor](https://cloud.yandex.com/en/docs/iam/concepts/access-control/roles#editor) role. Terraform state is edited by this account.
 4. Generate [static access keys](https://cloud.yandex.com/en/docs/iam/operations/sa/create-access-key) for the service account created in the previous step.
-   1. Note: save the ID key_id and secret key. You will not be able to get the key value again
+   1. Note: save the ID key_id and secret key to some temporary file. You will not be able to get the key value again
 
-### Step 2. Setup Ansible
+### Step 2. Setup DataDog monitoring
+
+1. Create a DataDog account
+2. Save api_token and app_token to some temporary file
+
+### Step 3. Setup Ansible
 
 1. Install Ansible. Preferrably version >= core 2.14.1
-2. `make install_roles`
+2. `make install-roles`
 
-### Step 3. Create necessary keys and passwords
+### Step 4. Create necessary keys and passwords
 
 1. Generate ssh keys for the Yandex Cloud: `make generate-ssh-keys`
 2. Generate yandex token: `make generate-yandex-token`
@@ -29,19 +34,19 @@ Note: See the "Make commands" section. You can find helpful commands there
 3. Create ansible vault password: `make vault-create-password password=my_password`
     1. Note: password is saved in the `playground/vault-password.txt`. This file is added to the gitignore
 
-### Step 4. Create terraform infrastructure
+### Step 5. Create terraform infrastructure
 
 1. Set variables in the [vars.yml](./ansible/group_vars/all/vars.yml)
 2. Setup terraform infrastructure: `make terraform-setup`
    1. Note: after this step, it's automatically created a webservers vault in the `playground/vault.yml`. This file is added to the gitignore
 
-### Step 5. Setup webservers
+### Step 6. Setup webservers
 
 1. Set variables in the [vars.yml](./ansible/group_vars/webservers/vars.yml)
    1. Note: you can copy-paste generated vault from the previous step and edit it if necessary
 2. `make setup`
 
-### Step 6. Release application
+### Step 7. Release application
 
 1. `make release`
 

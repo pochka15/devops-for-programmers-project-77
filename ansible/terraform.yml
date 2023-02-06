@@ -21,6 +21,8 @@
           pg_user: "{{ postgres.user }}"
           pg_password: "{{ postgres.password }}"
           release_domain: "{{ release_domain }}"
+          datadog_api_key: "{{ datadog_api_key }}"
+          datadog_app_key: "{{ datadog_app_key }}"
       register: infra
       tags: setup
 

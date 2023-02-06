@@ -2,6 +2,9 @@
 - hosts: webservers
   gather_facts: false
 
+  roles:
+    - { role: datadog.datadog, become: true, tags: monitoring }
+
   tasks:
     - name: Install aptitude
       become: true

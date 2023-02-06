@@ -1,8 +1,13 @@
-# Variables which are used by other groups like webservers
 postgres_password: "{{ vault_postgres_password }}" # Set manually
 postgres_database: "hexlet-database"
 postgres_user: "hexlet-user"
 postgres_port: 6432
+
+datadog_api_key: "{{ vault_datadog_api_key }}" # Set manually
+datadog_app_key: "{{ vault_datadog_app_key }}" # Set manually
+
+release_domain: "pochka15.click" # Set manually
+generated_webservers_vault_dest: "{{ playbook_dir }}/../playground/vault.yml"
 
 ssh:
   # Don't change ssh.user! Because Yandex Cloud user depends on it
@@ -12,12 +17,12 @@ ssh:
   private_key_path: "~/.ssh/yandex/id_rsa"
 
 yandex:
-  cloud_id: "{{ vault.yandex.cloud_id }}" # Set manually
-  folder_id: "{{ vault.yandex.folder_id }}" # Set manually
+  cloud_id: "{{ vault_yandex_cloud_id }}" # Set manually
+  folder_id: "{{ vault_yandex_folder_id }}" # Set manually
   user: "{{ ssh.user }}"
   service_account:
-    access_key: "{{ vault.yandex.service_account.access_key }}" # Set manually
-    secret_key: "{{ vault.yandex.service_account.secret_key }}" # Set manually
+    access_key: "{{ vault_yandex_service_account_access_key }}" # Set manually
+    secret_key: "{{ vault_yandex_service_account_secret_key }}" # Set manually
 
 postgres:
   password: "{{ postgres_password }}"
@@ -32,6 +37,3 @@ terraform:
     key: "hexlet.tfstate" # Set manually
     access_key: "{{ yandex.service_account.access_key }}"
     secret_key: "{{ yandex.service_account.secret_key }}"
-
-release_domain: "pochka15.click" # Set manually
-generated_webservers_vault_dest: "{{ playbook_dir }}/../playground/vault.yml"

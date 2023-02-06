@@ -7,3 +7,5 @@ roles:
   - name: geerlingguy.pip
     version: 2.2.0
   
+  - name: datadog.datadog
+    version: 4.16.0

@@ -13,3 +13,22 @@ redmine:
     username: "{{ postgres_user }}"
     password: "{{ postgres_password }}"
     port: "{{ postgres_port }}"
+
+datadog_api_key: "{{ datadog_api_key }}" # is set by the group "all"
+datadog_site: "datadoghq.eu"
+datadog_agent_version: "7.41.1"
+
+datadog_config:
+  logs_enabled: true
+
+datadog_checks:
+  http_check:
+    init_config:
+
+    instances:
+      - name: Localhost
+        url: http://localhost
+
+# Required for datadog
+network_config:
+  enabled: true
