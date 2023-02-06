@@ -82,6 +82,7 @@ Ansible
 Terraform
 
 - plan setup: `make terraform-plan-setup`
+- destroy infrastructure: `make terraform-destroy`
 - get output: `make -s terraform-show-output name=pg_host`
 - get output for the pg_host value: `make -s terraform-show-output name=pg_host`
 
