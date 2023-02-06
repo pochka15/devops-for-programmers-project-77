@@ -43,7 +43,7 @@ Note: See the "Make commands" section. You can find helpful commands there
 ### Step 6. Setup webservers
 
 1. Set variables in the [vars.yml](./ansible/group_vars/webservers/vars.yml)
-   1. Note: you can copy-paste generated vault from the previous step and edit it if necessary
+   1. Note: you can copy-paste generated `playground/vault.yml` from the previous step and edit it if necessary
 2. `make setup`
 
 ### Step 7. Release application

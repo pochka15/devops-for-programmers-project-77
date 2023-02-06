@@ -14,7 +14,7 @@ redmine:
     password: "{{ postgres_password }}"
     port: "{{ postgres_port }}"
 
-datadog_api_key: "{{ datadog_api_key }}" # is set by the group "all"
+# datadog_api_key: is set by the group "all"
 datadog_site: "datadoghq.eu"
 datadog_agent_version: "7.41.1"
 

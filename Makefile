@@ -65,7 +65,7 @@ setup-monitoring:
 	--ssh-extra-args "-F ssh_config" \
 	ansible/playbook.yml
 
-setup: setup_required-packages setup-docker setup-monitoring
+setup: setup-required-packages setup-docker setup-monitoring
 
 release:
 	ansible-playbook -i ansible/inventory.ini \
