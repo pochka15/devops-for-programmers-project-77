@@ -33,10 +33,12 @@ Note: See the "Make commands" section. You can find helpful commands there
 
 1. Set variables in the [vars.yml](./ansible/group_vars/all/vars.yml)
 2. Setup terraform infrastructure: `make terraform-setup`
+   1. Note: after this step, it's automatically created a webservers vault in the `playground/vault.yml`. This file is added to the gitignore
 
 ### Step 5. Setup webservers
 
 1. Set variables in the [vars.yml](./ansible/group_vars/webservers/vars.yml)
+   1. Note: you can copy-paste generated vault from the previous step and edit it if necessary
 2. `make setup`
 
 ### Step 6. Release application

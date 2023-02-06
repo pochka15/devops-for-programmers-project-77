@@ -1,3 +1,9 @@
+# Variables which are used by other groups like webservers
+postgres_password: "{{ vault_postgres_password }}" # Set manually
+postgres_database: "hexlet-database"
+postgres_user: "hexlet-user"
+postgres_port: 6432
+
 ssh:
   # Don't change ssh.user! Because Yandex Cloud user depends on it
   # And Yandex Cloud can create only ubuntu user via terraform
@@ -14,10 +20,10 @@ yandex:
     secret_key: "{{ vault.yandex.service_account.secret_key }}" # Set manually
 
 postgres:
-  password: "{{ vault.postgres.password }}" # Set manually
-  database: "hexlet-database"
-  user: "hexlet-user"
-  port: 6432
+  password: "{{ postgres_password }}"
+  database: "{{ postgres_database }}"
+  user: "{{ postgres_user }}"
+  port: "{{ postgres_port }}"
 
 terraform:
   dir: "{{ playbook_dir }}/../terraform"
@@ -26,6 +32,6 @@ terraform:
     key: "hexlet.tfstate" # Set manually
     access_key: "{{ yandex.service_account.access_key }}"
     secret_key: "{{ yandex.service_account.secret_key }}"
-  
+
 release_domain: "pochka15.click" # Set manually
 generated_webservers_vault_dest: "{{ playbook_dir }}/../playground/vault.yml"

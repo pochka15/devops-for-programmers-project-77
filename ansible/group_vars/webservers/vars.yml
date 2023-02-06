@@ -8,8 +8,8 @@ redmine:
   database:
     host: "{{ vault.redmine.database.host }}" # Set manually
 
-    # These variables are set by the "all" group
-    name: "{{ postgres.database }}"
-    username: "{{ postgres.user }}"
-    password: "{{ postgres.password }}"
-    port: "{{ postgres.port }}"
+    # These variables are set by the group "all"
+    name: "{{ postgres_database }}"
+    username: "{{ postgres_user }}"
+    password: "{{ postgres_password }}"
+    port: "{{ postgres_port }}"
