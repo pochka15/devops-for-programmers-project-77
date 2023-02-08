@@ -1,13 +1,9 @@
-postgres_password: "{{ vault_postgres_password }}" # Set manually
-postgres_database: "hexlet-database"
-postgres_user: "hexlet-user"
-postgres_port: 6432
-
-datadog_api_key: "{{ vault_datadog_api_key }}" # Set manually
-datadog_app_key: "{{ vault_datadog_app_key }}" # Set manually
-
 release_domain: "pochka15.click" # Set manually
 generated_webservers_vault_dest: "{{ playbook_dir }}/group_vars/webservers/generated_vault.yml"
+
+datadog:
+  api_key: "{{ vault_datadog_api_key }}" # Set manually
+  app_key: "{{ vault_datadog_app_key }}" # Set manually
 
 ssh:
   # Don't change ssh.user! Because Yandex Cloud user depends on it
@@ -25,10 +21,10 @@ yandex:
     secret_key: "{{ vault_yandex_service_account_secret_key }}" # Set manually
 
 postgres:
-  password: "{{ postgres_password }}"
-  database: "{{ postgres_database }}"
-  user: "{{ postgres_user }}"
-  port: "{{ postgres_port }}"
+  password: "{{ vault_postgres_password }}" # Set manually
+  database: "hexlet-database"
+  user: "hexlet-user"
+  port: 6432
 
 terraform:
   dir: "{{ playbook_dir }}/../terraform"
@@ -46,5 +42,5 @@ terraform:
     pg_user: "{{ postgres.user }}"
     pg_password: "{{ postgres.password }}"
     release_domain: "{{ release_domain }}"
-    datadog_api_key: "{{ datadog_api_key }}"
-    datadog_app_key: "{{ datadog_app_key }}"
+    datadog_api_key: "{{ datadog.api_key }}"
+    datadog_app_key: "{{ datadog.app_key }}"

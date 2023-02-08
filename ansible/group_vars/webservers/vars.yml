@@ -6,15 +6,16 @@ redmine:
   env_file_path: "/tmp/redmine.env"
 
   database:
-    host: "{{ vault.redmine.database.host }}" # Set manually
+    host: "{{ vault_redmine_database_host }}"
 
     # These variables are set by the group "all"
-    name: "{{ postgres_database }}"
-    username: "{{ postgres_user }}"
-    password: "{{ postgres_password }}"
-    port: "{{ postgres_port }}"
+    name: "{{ postgres.database }}"
+    username: "{{ postgres.user }}"
+    password: "{{ postgres.password }}"
+    port: "{{ postgres.port }}"
 
-# datadog_api_key: is set by the group "all"
+datadog_api_key: "{{ datadog.api_key }}" # Is set by the group "all"
+datadog_app_key: "{{ datadog.app_key }}" # Is set by the group "all"
 datadog_site: "datadoghq.eu"
 datadog_agent_version: "7.41.1"
 
