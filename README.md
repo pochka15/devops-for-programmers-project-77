@@ -37,6 +37,7 @@ Note: See the "Make commands" section. You can find helpful commands there
 ### Step 5. Create terraform infrastructure
 
 1. Set variables in the [vars.yml](./ansible/group_vars/all/vars.yml)
+   1. Note: PostgreSQL password must be between 8 and 128 characters long
 2. Setup terraform infrastructure: `make terraform-setup`
    1. Note: after this step, it's automatically created a webservers vault in the `playground/vault.yml`. This file is added to the gitignore
 
