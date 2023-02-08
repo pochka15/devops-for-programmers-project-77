@@ -1,3 +1,5 @@
+VAULT_FILE_NAME = vault.yml
+
 generate-ssh-keys:
 	ssh-keygen -t ed25519 -C "ubuntu@yandex.com" -f ~/.ssh/yandex/id_rsa
 
@@ -14,15 +16,15 @@ vault-create-password:
 	echo $(password) > playground/vault-password.txt
 
 vault-encrypt:
-	ansible-vault encrypt ansible/group_vars/$(group)/vault.yml \
+	ansible-vault encrypt ansible/group_vars/$(GROUP)/$(VAULT_FILE_NAME) \
 	--vault-password-file playground/vault-password.txt
 
 vault-edit:
-	ansible-vault edit ansible/group_vars/$(group)/vault.yml \
+	ansible-vault edit ansible/group_vars/$(GROUP)/$(VAULT_FILE_NAME) \
 	--vault-password-file playground/vault-password.txt
 
 vault-view:
-	ansible-vault view ansible/group_vars/$(group)/vault.yml \
+	ansible-vault view ansible/group_vars/$(GROUP)/$(VAULT_FILE_NAME) \
 	--vault-password-file playground/vault-password.txt
 
 terraform-plan-setup:
@@ -42,7 +44,7 @@ terraform-destroy:
 	ansible/terraform.yml
 
 terraform-show-output:
-	cd terraform; terraform output -json $(name); cd - > /dev/null
+	cd terraform; terraform output -json $(NAME); cd - > /dev/null
 
 setup-required-packages:
 	ansible-playbook -i ansible/inventory.ini \
@@ -74,4 +76,4 @@ release:
 	ansible/release.yml
 	
 ssh:
-	ssh -F ssh_config $(host)
+	ssh -F ssh_config $(HOST)

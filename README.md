@@ -38,13 +38,12 @@ Note: See the "Make commands" section. You can find helpful commands there
 
 1. Set variables in the [vars.yml](./ansible/group_vars/all/vars.yml)
    1. Note: PostgreSQL password must be between 8 and 128 characters long
-2. Setup terraform infrastructure: `make terraform-setup`
-   1. Note: after this step, it's automatically created a webservers vault in the `playground/vault.yml`. This file is added to the gitignore
+2. Setup terraform infrastructure: `make terraform-setup && make vault-encrypt GROUP=webservers VAULT_FILE_NAME=generated_vault.yml`
+   1. Note: after this step, it's automatically generated a webservers vault in the `ansible/group_vars/webservers/generated_vault.yml`
 
 ### Step 6. Setup webservers
 
 1. Set variables in the [vars.yml](./ansible/group_vars/webservers/vars.yml)
-   1. Note: you can copy-paste generated `playground/vault.yml` from the previous step and edit it if necessary
 2. `make setup`
 
 ### Step 7. Release application
@@ -73,19 +72,19 @@ What this does is it destroys and creates balancer that listens on port 443 inst
 
 SSH
 
-- connect to the host "web2": `make ssh host=web2`
+- connect to the host "web2": `make ssh HOST=web2`
 
 Ansible
 
-- encrypt variables for the "all" group: `make vault-encrypt group=all`
-- encrypt variables for the "webservers" group: `make vault-encrypt group=webservers`
+- encrypt variables for the "all" group: `make vault-encrypt GROUP=all`
+- view variables for the "webservers", set vault filename: `make vault-view GROUP=webservers VAULT_FILE_NAME=generated_vault.yml`
 
 Terraform
 
 - plan setup: `make terraform-plan-setup`
 - destroy infrastructure: `make terraform-destroy`
 - get output: `make -s terraform-show-output`
-- get output for the "pg_host" value: `make -s terraform-show-output name=pg_host`
+- get output for the "pg_host" value: `make -s terraform-show-output NAME=pg_host`
 
 ## Demo
 

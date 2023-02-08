@@ -7,7 +7,7 @@ datadog_api_key: "{{ vault_datadog_api_key }}" # Set manually
 datadog_app_key: "{{ vault_datadog_app_key }}" # Set manually
 
 release_domain: "pochka15.click" # Set manually
-generated_webservers_vault_dest: "{{ playbook_dir }}/../playground/vault.yml"
+generated_webservers_vault_dest: "{{ playbook_dir }}/group_vars/webservers/generated_vault.yml"
 
 ssh:
   # Don't change ssh.user! Because Yandex Cloud user depends on it
