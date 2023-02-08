@@ -55,10 +55,6 @@ Note: See the "Make commands" section. You can find helpful commands there
 Application will be deployed at `http://your-domain`. I've deployed it to [pochka15.click](https://pochka15.click).
 To enable HTTPS see the "Enable HTTPS" section
 
-## Connect to webserver via SSH
-
-`make ssh host=web2`
-
 ## Enable HTTPS
 
 When creating terraform infrastructure it's automatically created a certificate for the domain you specified. See the [domain.tf](./terraform/domain.tf) for details. But in order to enable HTTPS you have to wait until certificate status becomes "ISSUED". When it's issued, you have two options. First is to go and change balancer listener manually in the Yandex Cloud console. But this can lead to incorrect terraform state synchronization. Second is to go through the next steps manually 😕:
@@ -74,6 +70,10 @@ What this does is it destroys and creates balancer that listens on port 443 inst
 
 ## Make commands
 
+SSH
+
+- connect to the host "web2": `make ssh host=web2`
+
 Ansible
 
 - encrypt variables for the "all" group: `make vault-encrypt group=all`
@@ -83,8 +83,8 @@ Terraform
 
 - plan setup: `make terraform-plan-setup`
 - destroy infrastructure: `make terraform-destroy`
-- get output: `make -s terraform-show-output name=pg_host`
-- get output for the pg_host value: `make -s terraform-show-output name=pg_host`
+- get output: `make -s terraform-show-output`
+- get output for the "pg_host" value: `make -s terraform-show-output name=pg_host`
 
 ## Demo
 
