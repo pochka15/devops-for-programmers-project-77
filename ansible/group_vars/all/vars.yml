@@ -37,3 +37,14 @@ terraform:
     key: "hexlet.tfstate" # Set manually
     access_key: "{{ yandex.service_account.access_key }}"
     secret_key: "{{ yandex.service_account.secret_key }}"
+  variables:
+    yandex_cloud_id: "{{ yandex.cloud_id }}"
+    yandex_folder_id: "{{ yandex.folder_id }}"
+    yandex_user: "{{ yandex.user }}"
+    public_ssh_key_path: "{{ ssh.public_key_path }}"
+    pg_database: "{{ postgres.database }}"
+    pg_user: "{{ postgres.user }}"
+    pg_password: "{{ postgres.password }}"
+    release_domain: "{{ release_domain }}"
+    datadog_api_key: "{{ datadog_api_key }}"
+    datadog_app_key: "{{ datadog_app_key }}"

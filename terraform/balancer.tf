@@ -11,29 +11,8 @@ resource "yandex_alb_load_balancer" "hexlet-balancer" {
   }
 
   # HTTP listener
-  listener {
-    name = "http-listener"
-
-    endpoint {
-      address {
-        external_ipv4_address {
-        }
-      }
-
-      ports = [80]
-    }
-
-    http {
-      handler {
-        http_router_id = yandex_alb_http_router.hexlet-router.id
-      }
-    }
-  }
-
-  # HTTPS listener
-  # Note: it works only when yandex_cm_certificate.main-domain-certficate.status == "ISSUED"
   # listener {
-  #   name = "https-listener"
+  #   name = "http-listener"
 
   #   endpoint {
   #     address {
@@ -41,19 +20,40 @@ resource "yandex_alb_load_balancer" "hexlet-balancer" {
   #       }
   #     }
 
-  #     ports = [443]
+  #     ports = [80]
   #   }
 
-  #   tls {
-  #     default_handler {
-  #       http_handler {
-  #         http_router_id = yandex_alb_http_router.hexlet-router.id
-  #       }
-
-  #       certificate_ids = [yandex_cm_certificate.main-domain-certficate.id]
+  #   http {
+  #     handler {
+  #       http_router_id = yandex_alb_http_router.hexlet-router.id
   #     }
   #   }
   # }
+
+  # HTTPS listener
+  # Note: it works only when yandex_cm_certificate.main-domain-certficate.status == "ISSUED"
+  listener {
+    name = "https-listener"
+
+    endpoint {
+      address {
+        external_ipv4_address {
+        }
+      }
+
+      ports = [443]
+    }
+
+    tls {
+      default_handler {
+        http_handler {
+          http_router_id = yandex_alb_http_router.hexlet-router.id
+        }
+
+        certificate_ids = [yandex_cm_certificate.main-domain-certficate.id]
+      }
+    }
+  }
 }
 
 resource "yandex_alb_target_group" "hexlet-target-group" {
