@@ -6,7 +6,7 @@ generate-yandex-token:
 	ansible/yandex-token.yml
 
 install-roles:
-	ansible-galaxy install -r requirements.yml
+	ansible-galaxy install -r ansible/requirements.yml
 
 vault-create-password:
 	mkdir -p playground; \
