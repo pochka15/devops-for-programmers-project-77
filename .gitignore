@@ -4,6 +4,7 @@ playground/**
 *.tfstate
 *.tfstate.*
 *.auto.tfvars
+*.lock.hcl
 *.backup
 
 .DS_Store
