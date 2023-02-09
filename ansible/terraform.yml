@@ -17,8 +17,8 @@
         project_path: "{{ terraform.dir }}"
         state: absent
         force_init: false
-        backend_config: "{{ tf_backend_config }}"
-        variables: "{{ tf_variables }}"
+        backend_config: "{{ terraform.backend }}"
+        variables: "{{ terraform.variables }}"
       tags: destroy
 
     - name: Show terraform stdout
